@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+#formOne {
+    width: 400px;
+    margin: auto auto;
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+textarea {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+button {
+    padding: 10px;
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    cursor: pointer;
+    border: none;
+    margin-left: 10px;
+}
+
+#btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.list {
+    margin: 40px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.list-item {
+    width: 150px;
+    box-shadow: 0px 0px 2px 0px black;
+    padding: 20px;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.title {
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+    padding: 10px 0px;
+    font-weight: bolder;
+}
+
+.subject {
+    font-weight: bolder;
+    padding: 10px 0px;
+}

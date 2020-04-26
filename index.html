@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <form action="" id="formOne">
+
+        <div>
+
+            <input type="text" placeholder="Name" name="name">
+
+        </div>
+
+        <div>
+
+            <input type="text" placeholder="subject" name="subject">
+
+        </div>
+
+
+        <div>
+
+            <textarea placeholder="message" name="message" rows="5"></textarea>
+
+        </div>
+
+        <div id="btn-group">
+
+            <button type="button" onclick="saveToLocalStorage()">Save</button>
+
+            <button type="button" onclick="resetLocalStorage()">Reset</button>
+
+        </div>
+
+        <div>
+
+            <input type="text" name="search" oninput="doSearch(event)" placeholder="enter something to search">
+
+        </div>
+
+        <div class="list"></div>
+
+    </form>
+
+    <script>
+        function saveToLocalStorage() {
+            var name = document.forms["formOne"]["name"].value;
+            var subject = document.forms["formOne"]["subject"].value;
+            var message = document.forms["formOne"]["message"].value;
+            if (name && subject && message) {
+
+                let formData = {
+                    name,
+                    subject,
+                    message
+                };
+
+                let formDataList = localStorage.getItem("formDataList");
+
+                if (formDataList) {
+                    formDataList = JSON.parse(formDataList);
+                    formDataList.push(formData);
+                    localStorage.setItem("formDataList", JSON.stringify(formDataList));
+                    clearForm();
+                    alert("saved");
+                    renderToBody();
+                } else {
+                    localStorage.setItem("formDataList", JSON.stringify([formData]));
+                    clearForm();
+                    alert("saved");
+                    renderToBody();
+                }
+
+            } else {
+                alert("fill all fields")
+            }
+        };
+
+        function renderToBody() {
+            let list = document.getElementsByClassName("list")[0];
+            let formDataList = localStorage.getItem("formDataList");
+            if (formDataList) {
+                formDataList = JSON.parse(formDataList);
+                formDataList.forEach(listItem => {
+                    list.innerHTML += `<div class="list-item" draggable="true"> <div class="title"> ${listItem.name} </div> <div class="subject"> ${listItem.subject} </div>  <div class="message"> ${listItem.message} </div>  </div>`;
+                });
+
+            } else {
+                list.innerHTML = `<h1 style="text-align:center;padding:10px 0px;"> No item found </h1> `
+            }
+        };
+
+        renderToBody();
+
+        function doSearch(e) {
+            let list = document.querySelector('.list');
+            let query = e.target.value;
+            let formDataList = localStorage.getItem("formDataList");
+            if (!formDataList) {
+                return false;
+            } else {
+                formDataList = JSON.parse(formDataList);
+                let listItems = formDataList.filter(listItem => {
+                    return listItem.name.includes(query);
+                });
+
+                if (listItems.length) {
+                    listItems.forEach(listItem => {
+                        list.innerHTML += `<div class="list-item" draggable="true" > <div class="title"> ${listItem.name} </div> <div class="subject"> ${listItem.subject} </div> <div class="message"> ${listItem.message} </div> </div>`;
+                    });
+                } else {
+                    list.innerHTML = `<h1 style="text-align:center;padding:20px 0px;"> No items found </h1>`;
+                }
+            }
+        };
+
+        function clearForm() {
+            location.reload();
+            var name = document.forms["formOne"]["name"].value = "";
+            var subject = document.forms["formOne"]["subject"].value = "";
+            var message = document.forms["formOne"]["message"].value = "";
+        };
+
+        function resetLocalStorage() {
+            let formDataList = localStorage.getItem("formDataList");
+            if (formDataList) {
+                localStorage.removeItem("formDataList")
+                alert("all items are removed")
+                renderToBody();
+            } else {
+                alert("no items found");
+            }
+        };
+    </script>
+</body>
+
+</html>
