@@ -22,4 +22,7 @@ This project is simple data collection project and to practise JS local storage 
 
 ### Project Preview:
 
-(https://github.com/Ali-Tahir4024/Data-collecting-project/blob/master/screencapture-file-C-Users-alita-OneDrive-Documents-GitHub-Data-collecting-project-index-html-2020-04-28-10_52_30.png)
+![img not found](https://github.com/alitahir4024/Data-collecting-project/blob/master/screencapture-file-C-Users-alita-OneDrive-Documents-GitHub-Data-collecting-project-index-html-2020-04-28-10_52_30.png)
+
+
+[Data Collecting Preview](https://alitahir4024.github.io/Data-collecting-project/)
